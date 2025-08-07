@@ -1,17 +1,19 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-
 pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: SonarQubePrepare@7
+  inputs:
+    SonarQube: 'Sonar'
+    scannerMode: 'cli'
+    cliScannerVersion: '7.2.0.5079'
+    configMode: 'manual'
+    cliProjectKey: 'Zotero'
+    cliProjectName: 'Zotero'
+    cliSources: '.'
+- task: SonarQubeAnalyze@7
+  inputs:
+    jdkversion: 'JAVA_HOME_17_X64'
+- task: SonarQubePublish@7
+  inputs:
+    pollingTimeoutSec: '300'
