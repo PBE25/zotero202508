@@ -12,7 +12,7 @@ steps:
     cliProjectName: 'Zotero'
     cliSources: '.'
     extraProperties: |
-      sonar.inclusions=./app/**
+      sonar.inclusions=**/**/*.js
       sonar.cfamily.build-wrapper-output=bw-output
 - task: SonarQubeAnalyze@7
   inputs:
