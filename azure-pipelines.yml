@@ -11,6 +11,8 @@ steps:
     cliProjectKey: 'Zotero'
     cliProjectName: 'Zotero'
     cliSources: '.'
+    extraProperties: |
+      sonar.cfamily.build-wrapper-output=bw-output
 - task: SonarQubeAnalyze@7
   inputs:
     jdkversion: 'JAVA_HOME_17_X64'
